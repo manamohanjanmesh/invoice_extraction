@@ -41,7 +41,7 @@ invoice-extraction/
 
 Installation
 1. Clone the repository
-git clone https://github.com//invoice-extraction.git
+git clone https://github.com/manamohanjanmesh/invoice-extraction.git
 
 2. Install dependencies
 pip install -r requirements.txt
