@@ -24,6 +24,7 @@ AI: Ollama Vision Model (LLaMA Vision)
 Document Processing: PyMuPDF
 Database: SQLite
 
+
 Project Structure
 invoice-extraction/
 │
