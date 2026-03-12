@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Invoices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #1f2937, #111827); color: #d1d5db; }
+        .table-header { background-color: #374151; }
+        .table-row { background-color: #1f2937; border-bottom: 1px solid #374151; }
+        .table-row:hover { background-color: #2b3748; }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-6 text-white">All Extracted Invoices</h1>
+        
+        <div class="shadow-lg rounded-xl overflow-hidden">
+            <table class="min-w-full text-left text-sm font-light">
+                <thead class="font-medium table-header">
+                    <tr>
+                        <th scope="col" class="px-6 py-4">Seller Name</th>
+                        <th scope="col" class="px-6 py-4">Buyer Name</th>
+                        <th scope="col" class="px-6 py-4">Invoice Date</th>
+                        <th scope="col" class="px-6 py-4">Total Amount</th>
+                        <th scope="col" class="px-6 py-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for invoice in invoices %}
+                    <tr class="table-row">
+                        <td class="px-6 py-4 font-medium">{{ invoice.seller_name }}</td>
+                        <td class="px-6 py-4">{{ invoice.buyer_name }}</td>
+                        <td class="px-6 py-4">{{ invoice.invoice_date }}</td>
+                        <td class="px-6 py-4">{{ invoice.total_amount }}</td>
+                        <td class="px-6 py-4">
+                            <a href="{{ url_for('display_invoice_details', invoice_id=invoice.id) }}" class="text-blue-400 hover:text-blue-300 font-semibold">
+                                View Details
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center py-8 text-gray-400">No invoices have been processed yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-8 text-center">
+            <a href="{{ url_for('index') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-300">
+                Extract Another Invoice
+            </a>
+        </div>
+    </div>
+</body>
+</html>
